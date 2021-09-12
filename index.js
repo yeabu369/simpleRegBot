@@ -38,8 +38,11 @@ bot.start((ctx) => {
   ctx.reply("Enter your last name, first name and patronymic", {
     reply_markup: { remove_keyboard: true },
   });
+
   ctx.scene.enter("getName");
 });
+
+// Get Name Scene Entered
 
 getName.command("start", async (ctx) => {
   ctx.reply("Let's start over. Enter first name, last name and patronymic", {
@@ -71,6 +74,8 @@ getName.on("text", async (ctx) => {
   await ctx.scene.leave("getName");
   ctx.scene.enter("getYear");
 });
+
+// Get Year scene entered
 
 getYear.hears(/^[0-9]{4}$/, async (ctx) => {
   ctx.session.year = ctx.message.text;
@@ -114,6 +119,8 @@ getYear.on("text", async (ctx) => {
   );
 });
 
+// Get Education information scene entered
+
 getEduc.hears("◀️ Back", async (ctx) => {
   ctx.reply(
     "Enter your year of birth" +
@@ -154,6 +161,8 @@ getEduc.on("text", async (ctx) => {
   await ctx.scene.leave("getEduc");
   ctx.scene.enter("getTheme");
 });
+
+// Get theme information scene entered 
 
 getTheme.hears("◀️ Back", async (ctx) => {
   ctx.reply(
@@ -197,6 +206,8 @@ getTheme.on("text", async (ctx) => {
   ctx.scene.enter("getLangs");
 });
 
+// Get language information scene entered
+
 getLangs.hears("◀️ Back", async (ctx) => {
   ctx.reply(
     "Write the topic of your thesis" +
@@ -239,6 +250,8 @@ getLangs.on("text", async (ctx) => {
   await ctx.scene.leave("getLangs");
   ctx.scene.enter("getCompSkills");
 });
+
+// Get computer skils information scene entered
 
 getCompSkills.hears("◀️ Back", async (ctx) => {
   ctx.reply(
@@ -286,6 +299,8 @@ getCompSkills.on("text", async (ctx) => {
   ctx.scene.enter("getNumber");
 });
 
+// Get Number information scene entered
+
 getNumber.hears("◀️ Back", async (ctx) => {
   ctx.reply(
     "What computer programs and at what level do you know?" +
@@ -332,6 +347,8 @@ getNumber.on("contact", async (ctx) => {
   await ctx.scene.leave("getNumber");
   ctx.scene.enter("check");
 });
+
+// Check information scene entered
 
 check.hears("️✅ That's right", (ctx) => {
   ctx.reply("✅ Thank you! Your application is accepted. We will call you back.", {
